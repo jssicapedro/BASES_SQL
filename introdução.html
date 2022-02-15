@@ -1,10 +1,98 @@
-CREATE DATABASE <nome_da_baseDados>
-^--/*vai criar a BD, que pode ter várias tabelas com diferentes dados*/
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>SQL</title>
+</head>
 
-CREATE TABLE <nome_da_tabela>
-^--/*vai criar a tabela, para que ela crie a tabeladentro da BD que queremos tem de se usar  USE <nome_da_BD> antes*/
+<body>
+    <main>
+        <h1>SQL</h1>
+        <p>
+        <pre>CREATE DATABASE nome_da_baseDados</pre>
+        <span>^--vai criar a BD, que pode ter várias tabelas com diferentes dados</span>
+        </p>
+        <p>
+        <pre>CREATE TABLE nome_da_tabela</pre>
+        <span>^--vai criar a tabela, para que ela crie a tabeladentro da BD que queremos tem de se usar
+            <code>USE nome_da_BD</code> antes</span>
+        </p>
+        <p>Para se criar uma tabela temos de adicionar colunas, e dizer que tipo de dados a mesma vai receber.</p>
+        <img src="Captura de ecrã 2022-02-15 151118.jpg" alt="tipos de dados sql">
+        <h2>Vamos criar a nossa primeira BD com uma tabela:</h2>
+        <pre>
+    CREATE DATABASE empresa
+    DEFAULT CHARACTER SET utf8
+    DEFAULT COLLATE utf_general_ci;
+        </pre>
+        <p>
+            <span>Estas propriedades indicam que o tipo de caracteres utilizados serão do tipo utf8 que é o tipo de
+                acentuação que usamos no nosso dia a dia. Ao não coloca-las indicamos que o SQL pode usar o predefenido
+                que,
+                na grande maioria das vezes não é o nosso.</span>
+        </p>
+        <p>Com a Base de Dados criada vamos criar uma tabela</p>
+        <pre>
+    CREATE TABLE funcionarios (
+        nome varchar(50) NOT NULL,
+        nascimento DATE,
+        sexo ENUM ('M', 'F'),
+        altura DECIMAL(3.2),
+        numeroCC VARCHAR(13),
+        nacionalidade VARCHAR(20) DEFAULT 'Portugal'
+    );</pre>
+        <h3>&#x1F3B2; Explicação e alguns detalhes importantes</h3>
 
-Para se criar uma tabela temos de adicionar colunas, e dizer que tipo de dados a mesma vai receber.
+        <pre>VARCHAR(50)</pre>
+        <p>Indica que o dado adicionado nesta tabela tem de ser do tipo texto e que no máximo tem de ter 50
+            caracateres (os estpaços tambem contam como caracteres)
+        </p>
 
-<img src="Captura de ecrã 2022-02-15 151118.jpg" alt="tipos de dados sql">
+        <pre>NOT NULL</pre>
+        <p>Diz que o campo não pode estar vazio nem nulo</p>
+
+        <pre>DATE</pre>
+        <p>É de boa prática usar uma data ao invés de utilizar os anos do utilizador pois, este teria de ser alterado todos os anos.</p>
+
+        <pre>ENUM('M' 'F')</pre>
+        <p>Como se pode ver na imagem anterior ENUM é uma coleção. 'M' e 'F' são os unicos valores válidos</p>
+
+        <pre>DECIMAL(3.2)</pre>
+        <p>Imagina que temos 3 casas no total, o 2 são os numeros que ficam depois da virgula ( , ) por exemplo 1.75</p>
+
+        <pre>nacionalidade VARCHAR(20) DEFAULT 'Portugal'</pre>
+        <p>Nesta ultima propriedade, a nacionalidade terá no máximo 20 caracteres e caso não seja colocado nenhum dado, por definição, será colocado "Portugal"</p>
+
+        <h2>Vamos falar de PRIMARY KEY</h2>
+        <p>Com a tabale criada, podemos "cadastrar" inumeras vezes a mesma pessoa, mas isso seria estranho certo? Por isso temos de ter um campo com uma chave primária, um campo com chave primária não se repete. Por exemplo uma pessoa pode ter o mesmo nome que outra mas não pde ter o mesmo número de Cartão de Cidadão (numeroCC), neste caso o numeroCC será a nossa chave primária.</p>
+        <p>Deves criar também uma coluna para o identificador, que se já tens bases em outras linguagens sabes que o identificador por norma é chamado de id.</p>
+        <pre class="cd_anterior">
+    CREATE TABLE funcionarios (
+     <span class="cd_novo">id NOT NULL AUTO_INCREMENT</span>
+        nome varchar(50) NOT NULL,
+        nascimento DATE,
+        sexo ENUM ('M', 'F'),
+        altura DECIMAL(3.2),
+        numeroCC VARCHAR(13),
+        nacionalidade VARCHAR(20) DEFAULT 'Portugal',
+     <span class="cd_novo">PRIMARY key (id)</span>
+    );</pre>
+<p>Caso não consigas adicionar este no elemento usa a linha de código seguinte:</p>
+    <pre>   ALTER TABLE pessoas ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;</pre>
+        
+    <h3>&#x1F3B2; Explicação e alguns detalhes importantes</h3>
+    <pre>   AUTO_INCREMENT</pre>
+    <p>Este elemento faz com que seja incrementado um valor a cada "funcionario" automáticamente.</p>
+    <br>
+    <pre>   PRIMARY KEY (id)</pre>
+    <p>Aqui estamos a dizer que a coluna id será a chave primária</p>
+
+    <h2>Adicionar dados á BD</h2>
+    </main>
+</body>
+
+</html>
