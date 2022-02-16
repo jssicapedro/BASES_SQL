@@ -6,12 +6,12 @@
 body{
     background-color: black;
     color: #fff;
+    max-width: 1000px;
+    margin: auto;
 }
 
 main{
-    max-width: 1000px;
-    margin: auto;
-    padding: 0 20px;
+    padding: 0 20px 10%;
 }
 
 h1{
@@ -76,10 +76,16 @@ strong{
 
 
 footer{
+    /* width: 80%; 
+   
+    bottom: 0;
+    position: fixed;
+    flex-shrink: 0;
+    */
     height: 50px;
     line-height: 50px;
     background: #696969;
-    display: flex;
+    display: flex; 
     justify-content: space-between;
     padding: 0 20px;
 }
