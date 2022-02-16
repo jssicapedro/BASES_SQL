@@ -11,7 +11,7 @@
 
 <body>
     <main>
-        <h1>SQL</h1>
+        <h1>Introdução ao SQL</h1>
         <p>
         <pre>CREATE DATABASE nome_da_baseDados</pre>
         <span>^--vai criar a BD, que pode ter várias tabelas com diferentes dados</span>
@@ -100,17 +100,17 @@
     <pre>USE empresa;</pre>
     <p>Assim estamos a afirmar que todas as proximas linhas de código iram afetar essa BD (não executes já).</p>
     <pre>
-        INSERT INTO funcionarios 
-            (id, nome, nascimento, sexo, altura, numeroCC, nacionalidade)
-        VALUES
-            ('1', 'Rafaela', '2000-03-22', 'F', '1.55', '1234567890', 'Portugal');
+    INSERT INTO funcionarios 
+        (id, nome, nascimento, sexo, altura, numeroCC, nacionalidade)
+    VALUES
+        ('1', 'Rafaela', '2000-03-22', 'F', '1.55', '1234567890', 'Portugal');
     </pre>
     <p>Caso não te lembres, o ID está como AUTO-INCREMENT, de modo a que com cada adição de funcionáros (neste caso em concreto) o sistema defina sequêncialmente como será gerado. Assim sendo não é necessario informar que a Rafaela é o numero 1 da tabela, o sistema já sabe disso. Nesse caso:</p>
     <pre>
-        INSERT INTO funcionarios 
-            (nome, nascimento, sexo, altura, numeroCC, nacionalidade)
-        VALUES
-            ('Rafaela', '2000-03-22', 'F', '1.55', '1234567890', 'Portugal');
+    INSERT INTO funcionarios 
+        (nome, nascimento, sexo, altura, numeroCC, nacionalidade)
+    VALUES
+        ('Rafaela', '2000-03-22', 'F', '1.55', '1234567890', 'Portugal');
     </pre>
     <p>Agora sim podes executar.</p>
     <h3>&#x1F3B2; Explicação e alguns detalhes importantes</h3>
@@ -121,7 +121,7 @@
     <p>Os valores</p>
     <p><span>NOTA AINDA QUE:</span> todos os dados tem de estar entre plicas( ' ' ) ou aspas( " " ).</p>
     <p>Usa </p>
-    <pre>SELECT * FROM funcionarios</pre>
+    <pre>   SELECT * FROM funcionarios</pre>
     <p>para veres o que adicionas-te</p>
     <p>Seleciona tudo/all( * ) de funcionarios</p>
     <p><span>PARA OS TEIMOSOS</span></p>
@@ -133,19 +133,34 @@
     <p>para os teimosos que querem colocar o id, basta usar o DEFAULT que o sistema trata de colocar o respetivo valor</p>
     <p><span>VAMOS FACILITAR</span> Podes reparar que os dados foram adicionados na mesma ordem que os campos. Quando a ordem é <strong>exatamente</strong> a mesma não precisamos informar os campos no inicio, assim sendo basta colocar</p>
     <pre>
-        INSERT INTO funcionarios VALUES
-            (DEFAULT, 'Rafaela', '2000-03-22', 'F', '1.55', '1234567890', 'Portugal');</pre>
+    INSERT INTO funcionarios VALUES
+        (DEFAULT, 'Rafaela', '2000-03-22', 'F', '1.55', '1234567890', 'Portugal');</pre>
     <br>
     <p><span>VAMOS FACILITAR AINDA MAIS</span> vais concordar comigo que fazer essas linhas sempre que formos adicionar um novo funcionário é a coisa mais chata que existe. Assim, é possivel adicionar varios dados ao mesmo tempo.</p>
     <pre>
-        INSERT INTO funcionarios VALUES
-            (DEFAULT, 'Nelson', '2003-01-15', 'M', '1.35', '1103267948', 'EUA')<span class="impt">,</span>
-            (DEFAULT, 'Adelaide', '2005-04-05', 'F', '1.74', '7316520476', 'Russia')<span class="impt">,</span>
-            (DEFAULT, 'Romeu', '1998-07-12', 'M', '2', '9852346710', 'Italia')<span class="impt">;</span>
+    INSERT INTO funcionarios VALUES
+        (DEFAULT, 'Nelson', '2003-01-15', 'M', '1.35', '1103267948', 'EUA')<span class="impt">,</span>
+        (DEFAULT, 'Adelaide', '2005-04-05', 'F', '1.74', '7316520476', 'Russia')<span class="impt">,</span>
+        (DEFAULT, 'Romeu', '1998-07-12', 'M', '2', '9852346710', 'Italia')<span class="impt">;</span>
     </pre>
     <p><span>LEMBRA-TE</span>todas as pessoas estão separadas por virgulas( , ) menos a ultima que termina com ponto e virgula( ; ), porque é a que termina o comando.</p>
     <p>Agora podes adicionar os dados que quiseres</p>
+
+    <h2>Adicionar uma nova coluna</h2>
+    <p>
+        Para adicionar colunas na tabela da nossa BD temos de dizer ao sistema qual tabela será alterada e só depois a podemos adicionar.
+    </p>
+    <pre>
+    ALTER TABLE funcionarios
+    ADD COLUMN setor varchar(10);</pre>
+    <p>Aqui estamos a adicionar a coluna "setor" que aceita texto com no maximo 10 caracteres á tabela funcionários</p>
     </main>
+
+    <footer>
+        <p>©️2022 Introdução ao SQL</p>
+        <p>Site por Jéssica Pedro</p>
+        <p><a href="https://github.com/jssicapedro">GITHUB</a></p>
+    </footer>
 </body>
 
 </html>
