@@ -56,7 +56,8 @@
         <p>Diz que o campo não pode estar vazio nem nulo</p>
 
         <pre>DATE</pre>
-        <p>É de boa prática usar uma data ao invés de utilizar os anos do utilizador pois, este teria de ser alterado todos os anos.</p>
+        <p>É de boa prática usar uma data ao invés de utilizar os anos do utilizador pois, este teria de ser alterado
+            todos os anos.</p>
 
         <pre>ENUM('M','F')</pre>
         <p>Como se pode ver na imagem anterior ENUM é uma coleção. 'M' e 'F' são os unicos valores válidos</p>
@@ -65,11 +66,16 @@
         <p>Imagina que temos 3 casas no total, o 2 são os numeros que ficam depois da virgula ( , ) por exemplo 1.75</p>
 
         <pre>nacionalidade VARCHAR(20) DEFAULT 'Portugal'</pre>
-        <p>Nesta ultima propriedade, a nacionalidade terá no máximo 20 caracteres e caso não seja colocado nenhum dado, por definição, será colocado "Portugal"</p>
+        <p>Nesta ultima propriedade, a nacionalidade terá no máximo 20 caracteres e caso não seja colocado nenhum dado,
+            por definição, será colocado "Portugal"</p>
 
         <h2>Vamos falar de PRIMARY KEY</h2>
-        <p>Com a tabale criada, podemos "cadastrar" inumeras vezes a mesma pessoa, mas isso seria estranho certo? Por isso temos de ter um campo com uma chave primária, um campo com chave primária não se repete. Por exemplo uma pessoa pode ter o mesmo nome que outra mas não pde ter o mesmo número de Cartão de Cidadão (numeroCC), neste caso o numeroCC será a nossa chave primária.</p>
-        <p>Deves criar também uma coluna para o identificador, que se já tens bases em outras linguagens sabes que o identificador por norma é chamado de id.</p>
+        <p>Com a tabale criada, podemos "cadastrar" inumeras vezes a mesma pessoa, mas isso seria estranho certo? Por
+            isso temos de ter um campo com uma chave primária, um campo com chave primária não se repete. Por exemplo
+            uma pessoa pode ter o mesmo nome que outra mas não pde ter o mesmo número de Cartão de Cidadão (numeroCC),
+            neste caso o numeroCC será a nossa chave primária.</p>
+        <p>Deves criar também uma coluna para o identificador, que se já tens bases em outras linguagens sabes que o
+            identificador por norma é chamado de id.</p>
         <pre class="cd_anterior">
     CREATE TABLE funcionarios (
      <span class="cd_novo">id INT NOT NULL AUTO_INCREMENT,</span>
@@ -81,88 +87,123 @@
         nacionalidade VARCHAR(20) DEFAULT 'Portugal',
      <span class="cd_novo">PRIMARY key (id)</span>
     );</pre>
-<p>Caso não consigas adicionar este no elemento usa a linha de código seguinte:</p>
-    <pre>   ALTER TABLE pessoas ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;</pre>
-        
-    <h3>&#x1F3B2; Explicação e alguns detalhes importantes</h3>
-    <pre>   AUTO_INCREMENT</pre>
-    <p>Este elemento faz com que seja incrementado um valor a cada "funcionario" automáticamente.</p>
-    <br>
-    <pre>   PRIMARY KEY (id)</pre>
-    <p>Aqui estamos a dizer que a coluna id será a chave primária</p>
-    <br>
-    <pre>ALTER TABLE pessoas ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY</pre>
-    <p>Esta linha indica que vamos alterar a tabela pessoas adicionando o id com numero inteiro não pode estar vazia, vai ser incrementado a cada adição um valor e será a chave primária.</p>
-    <p>Ao usar este ultimo, lembra-te que o id será a ultima coluna e não a primeira como acontece no primeiro.</p>
+        <p>Caso não consigas adicionar este no elemento usa a linha de código seguinte:</p>
+        <pre>   ALTER TABLE pessoas ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;</pre>
 
-    <h2>Adicionar dados á BD</h2>
-    <p>Antes de iniciar-mos a adição dos dados temos de abrir o bamco de dados, para isso usamos</p>
-    <pre>USE empresa;</pre>
-    <p>Assim estamos a afirmar que todas as proximas linhas de código iram afetar essa BD (não executes já).</p>
-    <pre>
+        <h3>&#x1F3B2; Explicação e alguns detalhes importantes</h3>
+        <pre>   AUTO_INCREMENT</pre>
+        <p>Este elemento faz com que seja incrementado um valor a cada "funcionario" automáticamente.</p>
+        <br>
+        <pre>   PRIMARY KEY (id)</pre>
+        <p>Aqui estamos a dizer que a coluna id será a chave primária</p>
+        <br>
+        <pre>ALTER TABLE pessoas ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY</pre>
+        <p>Esta linha indica que vamos alterar a tabela pessoas adicionando o id com numero inteiro não pode estar
+            vazia, vai ser incrementado a cada adição um valor e será a chave primária.</p>
+        <p>Ao usar este ultimo, lembra-te que o id será a ultima coluna e não a primeira como acontece no primeiro.</p>
+
+        <h2>Adicionar dados á BD</h2>
+        <p>Antes de iniciar-mos a adição dos dados temos de abrir o bamco de dados, para isso usamos</p>
+        <pre>USE empresa;</pre>
+        <p>Assim estamos a afirmar que todas as proximas linhas de código iram afetar essa BD (não executes já).</p>
+        <pre>
     INSERT INTO funcionarios 
         (id, nome, nascimento, sexo, altura, numeroCC, nacionalidade)
     VALUES
         ('1', 'Rafaela', '2000-03-22', 'F', '1.55', '1234567890', 'Portugal');</pre>
-    <p>Caso não te lembres, o ID está como AUTO-INCREMENT, de modo a que com cada adição de funcionáros (neste caso em concreto) o sistema defina sequêncialmente como será gerado. Assim sendo não é necessario informar que a Rafaela é o numero 1 da tabela, o sistema já sabe disso. Nesse caso:</p>
-    <pre>
+        <p>Caso não te lembres, o ID está como AUTO-INCREMENT, de modo a que com cada adição de funcionáros (neste caso
+            em concreto) o sistema defina sequêncialmente como será gerado. Assim sendo não é necessario informar que a
+            Rafaela é o numero 1 da tabela, o sistema já sabe disso. Nesse caso:</p>
+        <pre>
     INSERT INTO funcionarios 
         (nome, nascimento, sexo, altura, numeroCC, nacionalidade)
     VALUES
         ('Rafaela', '2000-03-22', 'F', '1.55', '1234567890', 'Portugal');</pre>
-    <p>Agora sim podes executar.</p>
-    <h3>&#x1F3B2; Explicação e alguns detalhes importantes</h3>
-    <pre>INSERT INTO nome_da_baseDados</pre>
-    <p>Insere detro da base de dados x</p>
-    <br>
-    <pre>VALUES</pre>
-    <p>Os valores</p>
-    <p><span>NOTA AINDA QUE:</span> todos os dados tem de estar entre plicas( ' ' ) ou aspas( " " ).</p>
-    <p>Usa </p>
-    <pre>   SELECT * FROM funcionarios</pre>
-    <p>para veres o que adicionas-te</p>
-    <p>Seleciona tudo/all( * ) de funcionarios</p>
-    <p><span>PARA OS TEIMOSOS</span></p>
-    <pre>
+        <p>Agora sim podes executar.</p>
+        <h3>&#x1F3B2; Explicação e alguns detalhes importantes</h3>
+        <pre>INSERT INTO nome_da_baseDados</pre>
+        <p>Insere detro da base de dados x</p>
+        <br>
+        <pre>VALUES</pre>
+        <p>Os valores</p>
+        <p><span>NOTA AINDA QUE:</span> todos os dados tem de estar entre plicas( ' ' ) ou aspas( " " ).</p>
+        <p>Usa </p>
+        <pre>   SELECT * FROM funcionarios</pre>
+        <p>para veres o que adicionas-te</p>
+        <p>Seleciona tudo/all( * ) de funcionarios</p>
+        <p><span>PARA OS TEIMOSOS</span></p>
+        <pre>
     INSERT INTO funcionarios 
         (id, nome, nascimento, sexo, altura, numeroCC, nacionalidade)
     VALUES
         (DEFAULT, 'Rafaela', '2000-03-22', 'F', '1.55', '1234567890', 'Portugal');</pre>
-    <p>para os teimosos que querem colocar o id, basta usar o DEFAULT que o sistema trata de colocar o respetivo valor</p>
-    <p><span>VAMOS FACILITAR</span> Podes reparar que os dados foram adicionados na mesma ordem que os campos. Quando a ordem é <strong>exatamente</strong> a mesma não precisamos informar os campos no inicio, assim sendo basta colocar</p>
-    <pre>
+        <p>para os teimosos que querem colocar o id, basta usar o DEFAULT que o sistema trata de colocar o respetivo
+            valor</p>
+        <p><span>VAMOS FACILITAR</span> Podes reparar que os dados foram adicionados na mesma ordem que os campos.
+            Quando a ordem é <strong>exatamente</strong> a mesma não precisamos informar os campos no inicio, assim
+            sendo basta colocar</p>
+        <pre>
     INSERT INTO funcionarios VALUES
         (DEFAULT, 'Rafaela', '2000-03-22', 'F', '1.55', '1234567890', 'Portugal');</pre>
-    <br>
-    <p><span>VAMOS FACILITAR AINDA MAIS</span> vais concordar comigo que fazer essas linhas sempre que formos adicionar um novo funcionário é a coisa mais chata que existe. Assim, é possivel adicionar varios dados ao mesmo tempo.</p>
-    <pre>
+        <br>
+        <p><span>VAMOS FACILITAR AINDA MAIS</span> vais concordar comigo que fazer essas linhas sempre que formos
+            adicionar um novo funcionário é a coisa mais chata que existe. Assim, é possivel adicionar varios dados ao
+            mesmo tempo.</p>
+        <pre>
     INSERT INTO funcionarios VALUES
         (DEFAULT, 'Nelson', '2003-01-15', 'M', '1.35', '1103267948', 'EUA')<span class="impt">,</span>
         (DEFAULT, 'Adelaide', '2005-04-05', 'F', '1.74', '7316520476', 'Russia')<span class="impt">,</span>
         (DEFAULT, 'Romeu', '1998-07-12', 'M', '2', '9852346710', 'Italia'<span class="impt">;</span></pre>
-    <p><span>LEMBRA-TE</span>todas as pessoas estão separadas por virgulas( , ) menos a ultima que termina com ponto e virgula( ; ), porque é a que termina o comando.</p>
-    <p>Agora podes adicionar os dados que quiseres</p>
+        <p><span>LEMBRA-TE</span>todas as pessoas estão separadas por virgulas( , ) menos a ultima que termina com ponto
+            e virgula( ; ), porque é a que termina o comando.</p>
+        <p>Agora podes adicionar os dados que quiseres</p>
 
-    <h2>Adicionar uma nova coluna</h2>
-    <p>Para adicionar colunas na tabela da nossa BD temos de dizer ao sistema qual tabela será alterada e só depois a podemos adicionar.</p>
-    <pre>
+        <h2>Adicionar uma nova coluna</h2>
+        <p>Para adicionar colunas na tabela da nossa BD temos de dizer ao sistema qual tabela será alterada e só depois
+            a podemos adicionar.</p>
+        <pre>
     ALTER TABLE funcionarios
     ADD COLUMN setor varchar(10);</pre>
-    <p>Aqui estamos a adicionar a coluna "setor" que aceita texto com no maximo 10 caracteres á tabela funcionários</p>
-    <p>Vamos ver agora todoas as colunas que essa tabela tem com DESCRIBE ou DESC</p>
-    <pre>
+        <p>Aqui estamos a adicionar a coluna "setor" que aceita texto com no maximo 10 caracteres á tabela funcionários
+        </p>
+        <p>Vamos ver agora todoas as colunas que essa tabela tem com DESCRIBE ou DESC</p>
+        <pre>
      DESC funcionarios;</pre>
-     <p>Deves te lembrar que já tinhamos adicionado alguns funcionários, ao adicionar esta nova coluna, com que profissão ficam? Vamos usar os comandos que já aprende-mos para ver</p>
-     <pre>
-    SELECT * FROM funcionarios
-     </pre>
-     <p>Um setor com apenas 10 caracteres por vezes pode não chegar para o setor em que o funcionario se encontra</p>
+        <p>Deves te lembrar que já tinhamos adicionado alguns funcionários, ao adicionar esta nova coluna, com que
+            profissão ficam? Vamos usar os comandos que já aprende-mos para ver</p>
+        <pre>
+    SELECT * FROM funcionarios</pre>
+        <p>Vais reparar que não os dados nessa coluna está como "NULL" em todos os funcionário, o que já deveias estar á espera pois
+            nada foi adicionado, mas já lá vamos.</p>
+        <p>Vamos agora alterar a posição dessa coluna, para colucar uma coluna já existente noutra posição, temos de a apagar<!-- , o que não é muito pratico se estiver prienchida, por isso deves f -->.Para adicionar uma coluna usou-se o ADD COLUMN então para a apagar vamos usar DROP COLUMN </p>
+        <pre>
+    ALTER TABLE funcionarios
+    DROP COLUMN setor;</pre>
+        <p>Depois de ileminar a coluna vamos adicionar uma com a posição exata que queremos</p>
+        <pre>
+    ALTER TABLE funcionarios
+    ADD COLUMN setor varchar(10) AFTER nome;</pre>
+        <p>Ou seja, vamos adicionar esta coluna depois da coluna "nome". Com SQL não é possivel adicionar uma coluna antes de alguma coisa. Para adicionar uma coluna em primeiro lugar escreve-se</p>
+        <pre>
+    ALTER TABLE funcionarios
+    ADD COLUMN  codigo int FIRST;</pre>
+    <h3>NOTAS IMPORTANTES</h3>
+    <p>Para adicionar uma coluna no final é só colocar ADD COLUMN nomedacoluna <em>tipodedados</em>, depois de alguma outra coluna ADD COLUMN nomedacoluna <em>tipodedados</em> AFTER nomedacoluna se se pretente colocar no inicio ADD COLUMN nomedacoluna <em>tipodedados</em> FIRST</p>
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- <p>Um setor com apenas 10 caracteres por vezes pode não chegar para o setor em que o funcionario se encontra</p> -->
     </main>
 
     <footer>
         <p>©️2022 Introdução ao SQL</p>
         <p>Site por Jéssica Pedro</p>
-        <p><a href="https://github.com/jssicapedro">GITHUB</a></p>
+        <p><a target="_blanck" href="https://github.com/jssicapedro">GITHUB</a></p>
     </footer>
 </body>
 
